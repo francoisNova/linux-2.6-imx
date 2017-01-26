@@ -127,7 +127,7 @@
 			gpio-key,wakeup;
 		};
 		
-		press_single {
+		/*press_single {
 			gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_UP>;
 			gpio-key,wakeup;
@@ -137,7 +137,7 @@
 			gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_DOWN>;
 			gpio-key,wakeup;
-		};
+		};*/
 	};
 
 	leds {
@@ -482,8 +482,8 @@
 			fsl,pins = <
 				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20		0x1b0b0	/* User LED */
 				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x17059	/* User Button */
-				MX6UL_PAD_GPIO1_IO05__GPIO1_IO05	0x17059	/* Single Press */
-				MX6UL_PAD_GPIO1_IO08__GPIO1_IO08	0x17059	/* Double Press */
+				//MX6UL_PAD_GPIO1_IO05__GPIO1_IO05	0x17059	/* Single Press */
+				//MX6UL_PAD_GPIO1_IO08__GPIO1_IO08	0x17059	/* Double Press */
 				MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
 				MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
 				MX6UL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x1b0b0
