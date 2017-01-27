@@ -140,14 +140,14 @@
 		};
 	};
 
-	leds {
+	/*leds {
 		compatible = "gpio-leds";
 
 		d16_led {
 			gpios = <&gpio4 20 0>;
 			linux,default-trigger = "heartbeat";
 		};
-	};
+	};*/
 };
 
 &cpu0 {
