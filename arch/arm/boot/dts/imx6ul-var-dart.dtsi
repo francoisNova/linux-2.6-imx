@@ -484,13 +484,13 @@
 //				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x17059	/* User Button */
 //				MX6UL_PAD_GPIO1_IO08__GPIO1_IO08	0x17059	/* Double Press PIC RC5*/
 				MX6UL_PAD_GPIO1_IO05__GPIO1_IO05	0x17059	/* Single Press PIC RC4*/
-				MX6UL_PAD_GPIO5_IO07__GPIO5_IO07        0x17059 /* Double Press PIC RC3*/
+				MX6UL_PAD_SNVS_TAMPER7__GPIO5_IO07      0x17059 /* Double Press PIC RC3*/
 				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00        0x1b0b0 /* LED3 */
 				MX6UL_PAD_GPIO1_IO01__GPIO1_IO01        0x1b0b0 /* LED1 Red */
 				MX6UL_PAD_GPIO1_IO02__GPIO1_IO02        0x1b0b0 /* LED2 Green */
 				MX6UL_PAD_GPIO1_IO04__GPIO1_IO04        0x1b0b0 /* LED2 Red */				
 				MX6UL_PAD_GPIO1_IO09__GPIO1_IO09        0x1b0b0 /* LED1 Green */
-				MX6UL_PAD_GPIO5_IO01__GPIO5_IO01        0x1b0b0 /* LED1 Red */
+				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01      0x1b0b0 /* LED1 Red */
 				MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
 				MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
 				MX6UL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x1b0b0
@@ -688,14 +688,14 @@
 			>;
 		};
 
-		pinctrl_tsc: tscgrp {
+		/*pinctrl_tsc: tscgrp {
 			fsl,pins = <
-				/*MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0xb0
+				MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0xb0
 				MX6UL_PAD_GPIO1_IO02__GPIO1_IO02	0xb0
 				MX6UL_PAD_GPIO1_IO03__GPIO1_IO03	0xb0
-				MX6UL_PAD_GPIO1_IO04__GPIO1_IO04	0xb0*/
+				MX6UL_PAD_GPIO1_IO04__GPIO1_IO04	0xb0
 			>;
-		};
+		};*/
 
 		pinctrl_sai1: sai1grp {
 			fsl,pins = <
