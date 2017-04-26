@@ -118,39 +118,7 @@
 
 #endif
 
-<<<<<<< HEAD
-	keys {
-		compatible = "gpio-keys";
-
-		/*user_btn {
-			gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_BACK>;
-			gpio-key,wakeup;
-		};*/
-		
-		press_single {
-			gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_UP>;
-			gpio-key,wakeup;
-		};
-		
-		press_double {
-			gpios = <&gpio5 7 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_DOWN>;
-			gpio-key,wakeup;
-		};
-
-		press_single2 {
-                        gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
-                        linux,code = <KEY_RIGHT>;
-                        gpio-key,wakeup;
-                };
-	};
-
-	/*leds {
-=======
 	leds {
->>>>>>> parent of 6186631... add user button support and update leds section
 		compatible = "gpio-leds";
 		hdd {
 			label = "IDE Activity";
@@ -163,7 +131,23 @@
 			gpios = <&gpio4 21 0>;
 			linux,default-trigger = "heartbeat";
 		};
-	};*/
+	};
+
+	gpio_keys {
+		compatible = "gpio-keys";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		autorepeat;
+
+		button_once {
+			label = "GPIO Key Once";
+			linux,code = <44>;
+			gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
+			#gpio-key,wakeup;
+		};
+
+
+	};
 };
 
 &cpu0 {
@@ -187,7 +171,7 @@
 	assigned-clock-rates = <812851200>;
 };
 
-/*&fec1 {
+&fec1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_enet1>;
 	phy-mode = "rmii";
@@ -225,7 +209,7 @@
 			reg = <3>;
 		};
 	};
-};*/
+};
 
 &flexcan1 {
 	pinctrl-names = "default";
@@ -303,7 +287,7 @@
 	status = "okay";
 };
 
-/*&tsc {
+&tsc {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_tsc>;
 	xnur-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;
@@ -314,7 +298,7 @@
 #else
 	status = "okay";
 #endif
-};*/
+};
 
 /* Console Uart */
 &uart1 {
@@ -339,11 +323,11 @@
 	status = "okay";
 };
 
-/*&wdog1 {
+&wdog1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_wdog>;
 	fsl,wdog_b;
-};*/
+};
 
 &usbotg1 {
 	dr_mode = "host";
@@ -496,29 +480,9 @@
 	imx6ul-evk {
 		pinctrl_hog_1: hoggrp-1 {
 			fsl,pins = <
-<<<<<<< HEAD
-//				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20		0x1b0b0	/* User LED */
-//				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x17059	/* User Button */
-				MX6UL_PAD_GPIO1_IO08__GPIO1_IO08	0x10000	/* Single Press 2 PIC RC5 */
-				MX6UL_PAD_GPIO1_IO05__GPIO1_IO05	0x10000	/* Single Press PIC RC4 */
-				MX6UL_PAD_SNVS_TAMPER7__GPIO5_IO07      0x10000 /* Double Press PIC RC3 */
-				MX6UL_PAD_SNVS_TAMPER8__GPIO5_IO08      0x10000 /* Low Battery PIC RC2 */
-				MX6UL_PAD_CSI_MCLK__GPIO4_IO17		0x1b0b0	/* nRST mobiChk	*/
-				MX6UL_PAD_CSI_DATA00__GPIO4_IO21	0x1b0b0	/* nDET mobiChk */
-				MX6UL_PAD_JTAG_MOD__GPIO1_IO10		0x1b0b0	/* OLED VCC Enable */
-				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00        0x1b0b0 /* LED3 */
-				MX6UL_PAD_GPIO1_IO01__GPIO1_IO01        0x1b0b0 /* LED1 Red */
-				MX6UL_PAD_GPIO1_IO02__GPIO1_IO02        0x1b0b0 /* LED2 Green */
-				MX6UL_PAD_GPIO1_IO04__GPIO1_IO04        0x1b0b0 /* LED2 Red */				
-				MX6UL_PAD_GPIO1_IO09__GPIO1_IO09        0x1b0b0 /* LED1 Green */
-				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1 /* LED4 Red */
-				MX6UL_PAD_CSI_DATA03__GPIO4_IO24	0x1b0b0 /* LED4 Green */
-				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01      0x1b0b0 /* Buzzer Enable */
-=======
 				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20		0x1b0b0	/* LED 1 */
 				MX6UL_PAD_CSI_DATA00__GPIO4_IO21	0x1b0b0	/* LED 2 */
 				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x17059	/* User Button */
->>>>>>> parent of 6186631... add user button support and update leds section
 				MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
 				MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
 				MX6UL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x1b0b0
@@ -530,7 +494,7 @@
 			>;
 		};
 
-/*		pinctrl_enet1: enet1grp {
+		pinctrl_enet1: enet1grp {
 			fsl,pins = <
 				MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN	0x1b0b0
 				MX6UL_PAD_ENET1_RX_ER__ENET1_RX_ER	0x1b0b0
@@ -555,7 +519,7 @@
 				MX6UL_PAD_ENET2_TX_CLK__ENET2_REF_CLK2	0x4001b031
 				MX6UL_PAD_JTAG_MOD__GPIO1_IO10		0x1b0b0
 			>;
-		}; */
+		};
 
 		pinctrl_flexcan1: flexcan1grp{
 			fsl,pins = <
@@ -716,14 +680,14 @@
 			>;
 		};
 
-/*		pinctrl_tsc: tscgrp {
+		pinctrl_tsc: tscgrp {
 			fsl,pins = <
 				MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0xb0
 				MX6UL_PAD_GPIO1_IO02__GPIO1_IO02	0xb0
 				MX6UL_PAD_GPIO1_IO03__GPIO1_IO03	0xb0
 				MX6UL_PAD_GPIO1_IO04__GPIO1_IO04	0xb0
 			>;
-		};*/
+		};
 
 		pinctrl_sai1: sai1grp {
 			fsl,pins = <
@@ -744,10 +708,10 @@
 			>;
 		};
 
-/*		pinctrl_wdog: wdoggrp {
+		pinctrl_wdog: wdoggrp {
 			fsl,pins = <
 				MX6UL_PAD_GPIO1_IO08__WDOG1_WDOG_B	0x78b0
 			>;
-		}; */
+		};
 	};
 };
