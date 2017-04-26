@@ -154,47 +154,50 @@
 			linux,default-trigger = "heartbeat";
 		};*/
 
-		led1:red:status {
+		led1_red {
 			label = "Status LED Red";
 			gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
 			default-state = "on";
-		}
+			panic-indicator;
+		};
 
-		led1:green:status {
+		led1_green {
 			label = "Status LED Green";
 			gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
-		}
+		};
 
-		led2:red:activity {
+		led2_red {
 			label = "Activity LED Red";
 			gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
-		}
+			panic-indicator;
+		};
 
-		led2:green:activity {
+		led2_green {
 			label = "Activity LED Green";
 			gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
-		}
+		};
 
-		led3:blue:comms {
+		led3 {
 			label = "Comms LED";
 			gpios = <&gpio1 0 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
-		}
+		};
 
-		led4:red:result {
+		led4_red {
 			label = "Result LED Red";
 			gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
-		}
+			panic-indicator;
+		};
 
-		led4:green:result {
+		led4_green {
 			label = "Result LED Green";
 			gpios = <&gpio4 24 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
-		}
+		};
 		
 	};
 };
@@ -374,7 +377,7 @@
 
 &wdog1 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_wdog>;
+//	pinctrl-0 = <&pinctrl_wdog>;
 	fsl,wdog_b;
 };
 
@@ -667,7 +670,7 @@
 				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
 				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
 				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
-				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	/* SD card detect */
+//				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	/* SD card detect */
 			>;
 		};
 
@@ -679,7 +682,7 @@
 				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
 				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
 				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
-				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	/* SD card detect */
+//				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	/* SD card detect */
 			>;
 		};
 
