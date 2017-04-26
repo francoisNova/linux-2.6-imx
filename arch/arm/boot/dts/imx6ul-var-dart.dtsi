@@ -146,14 +146,57 @@
                 };
 	};
 
-	/*leds {
+	leds {
 		compatible = "gpio-leds";
 
-		d16_led {
+/*		d16_led {
 			gpios = <&gpio4 20 0>;
 			linux,default-trigger = "heartbeat";
-		};
-	};*/
+		};*/
+
+		led1:red:status {
+			label = "Status LED Red";
+			gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
+			default-state = "on";
+		}
+
+		led1:green:status {
+			label = "Status LED Green";
+			gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		}
+
+		led2:red:activity {
+			label = "Activity LED Red";
+			gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		}
+
+		led2:green:activity {
+			label = "Activity LED Green";
+			gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		}
+
+		led3:blue:comms {
+			label = "Comms LED";
+			gpios = <&gpio1 0 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		}
+
+		led4:red:result {
+			label = "Result LED Red";
+			gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		}
+
+		led4:green:result {
+			label = "Result LED Green";
+			gpios = <&gpio4 24 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		}
+		
+	};
 };
 
 &cpu0 {
@@ -329,11 +372,11 @@
 	status = "okay";
 };
 
-/*&wdog1 {
+&wdog1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_wdog>;
 	fsl,wdog_b;
-};*/
+};
 
 &usbotg1 {
 	dr_mode = "host";
