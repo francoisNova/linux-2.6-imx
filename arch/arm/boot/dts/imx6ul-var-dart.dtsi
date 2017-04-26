@@ -118,9 +118,6 @@
 
 #endif
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 	keys {
 		compatible = "gpio-keys";
 
@@ -149,31 +146,11 @@
                 };
 	};
 
-<<<<<<< HEAD
 	leds {
 		compatible = "gpio-leds";
 
 /*		d16_led {
-=======
-	/*leds {
-=======
-=======
->>>>>>> parent of 6186631... add user button support and update leds section
-=======
->>>>>>> parent of 6186631... add user button support and update leds section
-	leds {
->>>>>>> parent of 6186631... add user button support and update leds section
-		compatible = "gpio-leds";
-		hdd {
-			label = "IDE Activity";
->>>>>>> imx-rel_imx_4.1.15_1.2.0_ga-var01
 			gpios = <&gpio4 20 0>;
-			linux,default-trigger = "ide-disk";
-		};
-
-		heartbeat {
-			label = "Heart Beat";
-			gpios = <&gpio4 21 0>;
 			linux,default-trigger = "heartbeat";
 		};*/
 
@@ -552,9 +529,6 @@
 	imx6ul-evk {
 		pinctrl_hog_1: hoggrp-1 {
 			fsl,pins = <
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 //				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20		0x1b0b0	/* User LED */
 //				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x17059	/* User Button */
 				MX6UL_PAD_GPIO1_IO08__GPIO1_IO08	0x10000	/* Single Press 2 PIC RC5 */
@@ -572,15 +546,6 @@
 				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1 /* LED4 Red */
 				MX6UL_PAD_CSI_DATA03__GPIO4_IO24	0x1b0b0 /* LED4 Green */
 				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01      0x1b0b0 /* Buzzer Enable */
-=======
-=======
->>>>>>> parent of 6186631... add user button support and update leds section
-=======
->>>>>>> parent of 6186631... add user button support and update leds section
-				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20		0x1b0b0	/* LED 1 */
-				MX6UL_PAD_CSI_DATA00__GPIO4_IO21	0x1b0b0	/* LED 2 */
-				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x17059	/* User Button */
->>>>>>> parent of 6186631... add user button support and update leds section
 				MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
 				MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
 				MX6UL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x1b0b0
