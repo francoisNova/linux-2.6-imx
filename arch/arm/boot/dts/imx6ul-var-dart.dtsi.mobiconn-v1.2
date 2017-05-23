@@ -156,33 +156,33 @@
 
 		led1_red {
 //			label = "Status LED Red";
-			gpios = <&gpio4 23 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
 			default-state = "on";
 			panic-indicator;
 		};
 
 		led1_green {
 //			label = "Status LED Green";
-			gpios = <&gpio4 20 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 		};
 
 		led2_red {
 //			label = "Activity LED Red";
-			gpios = <&gpio4 21 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 			panic-indicator;
 		};
 
 		led2_green {
 //			label = "Activity LED Green";
-			gpios = <&gpio4 17 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio1 2 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 		};
 
 		led3 {
 //			label = "Comms LED";
-			gpios = <&gpio5 3 GPIO_ACTIVE_HIGH>;
+			gpios = <&gpio1 0 GPIO_ACTIVE_HIGH>;
 			default-state = "off";
 		};
 
@@ -356,7 +356,6 @@
 &uart1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart1>;
-//	fsl,uart-has-rtscts;
 	status = "okay";
 };
 
@@ -372,7 +371,7 @@
 &uart3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart3>;
-//	fsl,uart-has-rtscts;
+	fsl,uart-has-rtscts;
 	status = "okay";
 };
 
@@ -418,7 +417,7 @@
 	no-1-8-v;
 	keep-power-in-suspend;
 	enable-sdio-wakeup;
-	cd-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;	//SD Card Detect only used when not WiFi
+	cd-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
 	status = "okay";
 };
 #endif
@@ -473,8 +472,7 @@
 #endif
 
 &i2c1 {
-	clock-frequency = <400000>;	//400kHz
-//	clock-frequency = <100000>;	//100kHz
+	clock-frequency = <400000>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_i2c1>;
 	status = "okay";
@@ -540,19 +538,17 @@
 				MX6UL_PAD_GPIO1_IO05__GPIO1_IO05	0x10000	/* Single Press PIC RC4 */
 				MX6UL_PAD_SNVS_TAMPER7__GPIO5_IO07      0x10000 /* Double Press PIC RC3 */
 				MX6UL_PAD_SNVS_TAMPER8__GPIO5_IO08      0x10000 /* Low Battery PIC RC2 */
-				MX6UL_PAD_GPIO1_IO01__GPIO1_IO01        0x10000 /* nDET mobiChk */
-				MX6UL_PAD_CSI_PIXCLK__GPIO4_IO18	0x1b0b0	/* nRST FT232 debug */
-				MX6UL_PAD_GPIO1_IO04__GPIO1_IO04	0x1b0b0	/* OLED VCC Enable */
-				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x1b0b0 /* nRST OLED */
-				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b0 /* nCS OLED */
-				MX6UL_PAD_CSI_DATA02__GPIO4_IO23        0x1b0b0 /* LED1 Red */
-				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20		0x1b0b0 /* LED1 Green */
-				MX6UL_PAD_CSI_DATA00__GPIO4_IO21        0x1b0b0 /* LED2 Red */
-				MX6UL_PAD_CSI_MCLK__GPIO4_IO17	        0x1b0b0 /* LED2 Green */
-				MX6UL_PAD_SNVS_TAMPER3__GPIO5_IO03      0x1b0b0 /* LED3 */
+				MX6UL_PAD_CSI_MCLK__GPIO4_IO17		0x1b0b0	/* nRST mobiChk	*/
+				MX6UL_PAD_CSI_DATA00__GPIO4_IO21	0x1b0b0	/* nDET mobiChk */
+				MX6UL_PAD_JTAG_MOD__GPIO1_IO10		0x1b0b0	/* OLED VCC Enable */
+				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00        0x1b0b0 /* LED3 */
+				MX6UL_PAD_GPIO1_IO01__GPIO1_IO01        0x1b0b0 /* LED1 Red */
+				MX6UL_PAD_GPIO1_IO02__GPIO1_IO02        0x1b0b0 /* LED2 Green */
+				MX6UL_PAD_GPIO1_IO04__GPIO1_IO04        0x1b0b0 /* LED2 Red */				
+				MX6UL_PAD_GPIO1_IO09__GPIO1_IO09        0x1b0b0 /* LED1 Green */
 				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1 /* LED4 Red */
 				MX6UL_PAD_CSI_DATA03__GPIO4_IO24	0x1b0b0 /* LED4 Green */
-				MX6UL_PAD_GPIO1_IO02__GPIO1_IO02      	0x1b0b0 /* Buzzer Enable */
+				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01      0x1b0b0 /* Buzzer Enable */
 				MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
 				MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
 				MX6UL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x1b0b0
@@ -661,8 +657,8 @@
 			fsl,pins = <
 				MX6UL_PAD_UART3_TX_DATA__UART3_DCE_TX	0x1b0b1
 				MX6UL_PAD_UART3_RX_DATA__UART3_DCE_RX	0x1b0b1
-//				MX6UL_PAD_UART3_CTS_B__UART3_DCE_CTS	0x1b0b1
-//				MX6UL_PAD_UART3_RTS_B__UART3_DCE_RTS	0x1b0b1
+				MX6UL_PAD_UART3_CTS_B__UART3_DCE_CTS	0x1b0b1
+				MX6UL_PAD_UART3_RTS_B__UART3_DCE_RTS	0x1b0b1
 			>;
 		};
 
