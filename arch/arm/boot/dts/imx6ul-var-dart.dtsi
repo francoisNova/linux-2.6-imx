@@ -121,11 +121,11 @@
 	keys {
 		compatible = "gpio-keys";
 
-		/*user_btn {
+/*		user_btn {
 			gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_BACK>;
 			gpio-key,wakeup;
-		};*/
+		}; */
 		
 		press_single {
 			gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
@@ -152,7 +152,7 @@
 /*		d16_led {
 			gpios = <&gpio4 20 0>;
 			linux,default-trigger = "heartbeat";
-		};*/
+		}; */
 
 		led1_red {
 //			label = "Status LED Red";
@@ -335,6 +335,8 @@
 };
 
 &adc1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_adc1>;
 	vref-supply = <&touch_3v3_regulator>;
 	status = "okay";
 };
@@ -383,7 +385,7 @@
 };
 
 &usbotg1 {
-	dr_mode = "host";
+	dr_mode = "peripheral";
 	disable-over-current;
 	status = "okay";
 };
@@ -543,8 +545,7 @@
 				MX6UL_PAD_GPIO1_IO01__GPIO1_IO01        0x10000 /* nDET mobiChk */
 				MX6UL_PAD_CSI_PIXCLK__GPIO4_IO18	0x1b0b0	/* nRST FT232 debug */
 				MX6UL_PAD_GPIO1_IO04__GPIO1_IO04	0x1b0b0	/* OLED VCC Enable */
-				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x1b0b0 /* nRST OLED */
-				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b0 /* nCS OLED */
+				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b0 /* nRST OLED */
 				MX6UL_PAD_CSI_DATA02__GPIO4_IO23        0x1b0b0 /* LED1 Red */
 				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20		0x1b0b0 /* LED1 Green */
 				MX6UL_PAD_CSI_DATA00__GPIO4_IO21        0x1b0b0 /* LED2 Red */
@@ -552,7 +553,7 @@
 				MX6UL_PAD_SNVS_TAMPER3__GPIO5_IO03      0x1b0b0 /* LED3 */
 				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1 /* LED4 Red */
 				MX6UL_PAD_CSI_DATA03__GPIO4_IO24	0x1b0b0 /* LED4 Green */
-				MX6UL_PAD_GPIO1_IO02__GPIO1_IO02      	0x1b0b0 /* Buzzer Enable */
+				MX6UL_PAD_GPIO1_IO02__GPIO1_IO02	0x1b0b0 /* Buzzer Enable */
 				MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
 				MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
 				MX6UL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x1b0b0
@@ -561,6 +562,13 @@
 				MX6UL_PAD_SNVS_TAMPER6__GPIO5_IO06	0x03029	/* WLAN enable */
 				MX6UL_PAD_GPIO1_IO03__REF_CLK_32K	0x03029	/* WLAN Slow Clock */
 #endif
+			>;
+		};
+
+		pinctrl_adc1: adc1grp {
+			fsl,pins = <
+				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x00040	/* ADC Channel 1 Input 0 */
+//			        MX6UL_PAD_GPIO1_IO09__GPIO1_IO09	0x000b0	/* ADC Channel 1 Input 9 */
 			>;
 		};
 
@@ -757,7 +765,7 @@
 				MX6UL_PAD_GPIO1_IO03__GPIO1_IO03	0xb0
 				MX6UL_PAD_GPIO1_IO04__GPIO1_IO04	0xb0
 			>;
-		};*/
+		}; */
 
 		pinctrl_sai1: sai1grp {
 			fsl,pins = <
