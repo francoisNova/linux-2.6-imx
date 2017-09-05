@@ -84,84 +84,20 @@
 	keys {
 		compatible = "gpio-keys";
 
-		/*user_btn {
+		user {
 			gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_BACK>;
 			gpio-key,wakeup;
-		};*/
-		
-		press_single {
-			gpios = <&gpio1 5 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_UP>;
-			gpio-key,wakeup;
 		};
-		
-		press_double {
-			gpios = <&gpio5 7 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_DOWN>;
-			gpio-key,wakeup;
-		};
-
-		press_single2 {
-                        gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
-                        linux,code = <KEY_RIGHT>;
-                        gpio-key,wakeup;
-                };
 	};
 
 	leds {
 		compatible = "gpio-leds";
 
-/*		d16_led {
+		d16_led {
 			gpios = <&gpio4 20 0>;
 			linux,default-trigger = "heartbeat";
-		};*/
-
-		led1_red {
-//			label = "Status LED Red";
-			gpios = <&gpio4 23 GPIO_ACTIVE_HIGH>;
-			default-state = "on";
-			panic-indicator;
 		};
-
-		led1_green {
-//			label = "Status LED Green";
-			gpios = <&gpio4 20 GPIO_ACTIVE_HIGH>;
-			default-state = "off";
-		};
-
-		led2_red {
-//			label = "Activity LED Red";
-			gpios = <&gpio4 21 GPIO_ACTIVE_HIGH>;
-			default-state = "off";
-			panic-indicator;
-		};
-
-		led2_green {
-//			label = "Activity LED Green";
-			gpios = <&gpio4 17 GPIO_ACTIVE_HIGH>;
-			default-state = "off";
-		};
-
-		led3 {
-//			label = "Comms LED";
-			gpios = <&gpio5 3 GPIO_ACTIVE_HIGH>;
-			default-state = "off";
-		};
-
-		led4_red {
-//			label = "Result LED Red";
-			gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
-			default-state = "off";
-			panic-indicator;
-		};
-
-		led4_green {
-//			label = "Result LED Green";
-			gpios = <&gpio4 24 GPIO_ACTIVE_HIGH>;
-			default-state = "off";
-		};
-		
 	};
 };
 
@@ -186,12 +122,13 @@
 	assigned-clock-rates = <812851200>;
 };
 
-/*&fec1 {
+&fec1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_enet1>;
 	phy-mode = "rmii";
 	phy-reset-gpios=<&gpio5 0 1>;
 	phy-reset-duration=<100>;
+	phy-reset-on-resume;
 	phy-handle = <&ethphy0>;
 	status = "okay";
 };
@@ -203,6 +140,7 @@
 	phy-handle = <&ethphy1>;
 	phy-reset-gpios=<&gpio1 10 1>;
 	phy-reset-duration=<100>;
+	phy-reset-on-resume;
 	status = "okay";
 	mdio {
 		#address-cells = <1>;
@@ -224,7 +162,7 @@
 			reg = <3>;
 		};
 	};
-};*/
+};
 
 &flexcan1 {
 	pinctrl-names = "default";
@@ -298,13 +236,11 @@
 };
 
 &adc1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_adc1>;
 	vref-supply = <&touch_3v3_regulator>;
 	status = "okay";
 };
 
-/*&tsc {
+&tsc {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_tsc>;
 	xnur-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;
@@ -315,17 +251,16 @@
 #else
 	status = "okay";
 #endif
-};*/
+};
 
-/* Console Uart */
+/* Console UART */
 &uart1 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart1>;
-//	fsl,uart-has-rtscts;
 	status = "okay";
 };
 
-/* Bluetooth Uart */
+/* Bluetooth UART */
 &uart2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart2>;
@@ -337,18 +272,18 @@
 &uart3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart3>;
-//	fsl,uart-has-rtscts;
+	fsl,uart-has-rtscts;
 	status = "okay";
 };
 
 &wdog1 {
 	pinctrl-names = "default";
-//	pinctrl-0 = <&pinctrl_wdog>;
+	pinctrl-0 = <&pinctrl_wdog>;
 	fsl,wdog_b;
 };
 
 &usbotg1 {
-	dr_mode = "peripheral";
+	dr_mode = "host";
 	disable-over-current;
 	status = "okay";
 };
@@ -383,7 +318,7 @@
 	no-1-8-v;
 	keep-power-in-suspend;
 	enable-sdio-wakeup;
-	cd-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;	//SD Card Detect only used when not WiFi
+	cd-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
 	status = "okay";
 };
 #endif
@@ -438,8 +373,7 @@
 #endif
 
 &i2c1 {
-	clock-frequency = <400000>;	//400kHz
-//	clock-frequency = <100000>;	//100kHz
+	clock-frequency = <400000>;
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_i2c1>;
 	status = "okay";
@@ -499,24 +433,8 @@
 	imx6ul-evk {
 		pinctrl_hog_1: hoggrp-1 {
 			fsl,pins = <
-//				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20		0x1b0b0	/* User LED */
-//				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x17059	/* User Button */
-				MX6UL_PAD_GPIO1_IO08__GPIO1_IO08	0x10000	/* Single Press 2 PIC RC5 */
-				MX6UL_PAD_GPIO1_IO05__GPIO1_IO05	0x10000	/* Single Press PIC RC4 */
-				MX6UL_PAD_SNVS_TAMPER7__GPIO5_IO07      0x10000 /* Double Press PIC RC3 */
-//				MX6UL_PAD_SNVS_TAMPER8__GPIO5_IO08      0x10000 /* Low Battery PIC RC2 */
-				MX6UL_PAD_GPIO1_IO01__GPIO1_IO01        0x10000 /* nDET mobiChk */
-				MX6UL_PAD_CSI_PIXCLK__GPIO4_IO18	0x1b0b0	/* nRST FT232 debug */
-				MX6UL_PAD_GPIO1_IO04__GPIO1_IO04	0x1b0b0	/* OLED VCC Enable */
-				MX6UL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x1b0b0 /* nRST OLED */
-				MX6UL_PAD_CSI_DATA02__GPIO4_IO23        0x1b0b0 /* LED1 Red */
-				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20		0x1b0b0 /* LED1 Green */
-				MX6UL_PAD_CSI_DATA00__GPIO4_IO21        0x1b0b0 /* LED2 Red */
-				MX6UL_PAD_CSI_MCLK__GPIO4_IO17	        0x1b0b0 /* LED2 Green */
-				MX6UL_PAD_SNVS_TAMPER3__GPIO5_IO03      0x1b0b0 /* LED3 */
-				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1 /* LED4 Red */
-				MX6UL_PAD_CSI_DATA03__GPIO4_IO24	0x1b0b0 /* LED4 Green */
-				MX6UL_PAD_GPIO1_IO02__GPIO1_IO02	0x1b0b0 /* Buzzer Enable */
+				MX6UL_PAD_CSI_HSYNC__GPIO4_IO20		0x1b0b0	/* User LED */
+				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x17059	/* User Button */
 				MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
 				MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
 #ifdef WIFI
@@ -525,14 +443,7 @@
 			>;
 		};
 
-		pinctrl_adc1: adc1grp {
-			fsl,pins = <
-				MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x00040	/* ADC Channel 1 Input 0 */
-//				MX6UL_PAD_GPIO1_IO09__GPIO1_IO09	0x000b0	/* ADC Channel 1 Input 9 */
-			>;
-		};
-
-/*		pinctrl_enet1: enet1grp {
+		pinctrl_enet1: enet1grp {
 			fsl,pins = <
 				MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN	0x1b0b0
 				MX6UL_PAD_ENET1_RX_ER__ENET1_RX_ER	0x1b0b0
@@ -557,7 +468,7 @@
 				MX6UL_PAD_ENET2_TX_CLK__ENET2_REF_CLK2	0x4001b031
 				MX6UL_PAD_JTAG_MOD__GPIO1_IO10		0x1b0b0
 			>;
-		}; */
+		};
 
 		pinctrl_flexcan1: flexcan1grp{
 			fsl,pins = <
@@ -629,8 +540,8 @@
 			fsl,pins = <
 				MX6UL_PAD_UART3_TX_DATA__UART3_DCE_TX	0x1b0b1
 				MX6UL_PAD_UART3_RX_DATA__UART3_DCE_RX	0x1b0b1
-//				MX6UL_PAD_UART3_CTS_B__UART3_DCE_CTS	0x1b0b1
-//				MX6UL_PAD_UART3_RTS_B__UART3_DCE_RTS	0x1b0b1
+				MX6UL_PAD_UART3_CTS_B__UART3_DCE_CTS	0x1b0b1
+				MX6UL_PAD_UART3_RTS_B__UART3_DCE_RTS	0x1b0b1
 			>;
 		};
 
@@ -642,7 +553,7 @@
 				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
 				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
 				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
-//				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	/* SD card detect */
+				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	/* SD card detect */
 			>;
 		};
 
@@ -654,7 +565,7 @@
 				MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
 				MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
 				MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
-//				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	/* SD card detect */
+				MX6UL_PAD_CSI_VSYNC__GPIO4_IO19		0x1b0b1	/* SD card detect */
 			>;
 		};
 
@@ -718,14 +629,14 @@
 			>;
 		};
 
-/*		pinctrl_tsc: tscgrp {
+		pinctrl_tsc: tscgrp {
 			fsl,pins = <
 				MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0xb0
 				MX6UL_PAD_GPIO1_IO02__GPIO1_IO02	0xb0
 				MX6UL_PAD_GPIO1_IO03__GPIO1_IO03	0xb0
 				MX6UL_PAD_GPIO1_IO04__GPIO1_IO04	0xb0
 			>;
-		};*/
+		};
 
 		pinctrl_sai1: sai1grp {
 			fsl,pins = <
@@ -746,14 +657,15 @@
 			>;
 		};
 
-/*		pinctrl_wdog: wdoggrp {
+		pinctrl_wdog: wdoggrp {
 			fsl,pins = <
 				MX6UL_PAD_GPIO1_IO08__WDOG1_WDOG_B	0x78b0
 			>;
-		}; */
+		};
 	};
 };
 
 &snvs_rtc {
        status = "disabled";
 };
+
